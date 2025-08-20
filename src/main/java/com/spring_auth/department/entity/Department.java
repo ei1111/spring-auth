@@ -9,29 +9,30 @@ import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Comment;
 
 @Getter
 @NoArgsConstructor
 @Entity(name = "department")
 public class Department {
     @Id
+    @Comment("부서 pk")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long departmentId;
 
+    @Comment("부서명")
     @Column(length = 50)
-    private String departmentName;
-
-    //private Team teamd
+    private String deptName;
 
     @Builder
-    public Department(String departmentName) {
-        this.departmentName = departmentName;
+    public Department(String deptName) {
+        this.deptName = deptName;
     }
 
     public DepartmentResponse toResponse() {
         return DepartmentResponse.builder()
                 .departmentId(this.departmentId)
-                .departmentName(this.departmentName)
+                .departmentName(this.deptName)
                 .build();
     }
 }
