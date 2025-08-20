@@ -43,6 +43,12 @@ dependencies {
 
     /*API 문서 생성(Swagger)*/
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5'
+    
+    /*.env 파일 읽기*/
+    implementation 'me.paulschwarz:spring-dotenv:2.5.4'
+
+    /*thymleaf*/
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     /*P6Spy*/
     implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
