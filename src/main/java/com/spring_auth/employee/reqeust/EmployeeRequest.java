@@ -21,11 +21,17 @@ public class EmployeeRequest {
     @Schema(name = "departmentId", description = "부서 id", example = "1")
     private Long departmentId;
 
+    @Schema(name = "kakaoNickName", description = "카카오 닉네임", example = "홍길동")
+    private String kakaoNickName;
+
+
     @Builder
-    public EmployeeRequest(String firstName, String lastName, Long departmentId) {
+    public EmployeeRequest(String firstName, String lastName, Long departmentId,
+            String kakaoNickName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.departmentId = departmentId;
+        this.kakaoNickName = kakaoNickName;
     }
 
     public Employee toEmployeeEntity(Department department) {
@@ -33,6 +39,7 @@ public class EmployeeRequest {
                 .firstName(firstName)
                 .lastName(lastName)
                 .department(department)
+                .kakoNickName(kakaoNickName)
                 .build();
     }
 }

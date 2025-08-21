@@ -45,6 +45,10 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Department department;
 
+    @Comment("카카오 인증 이름")
+    @Column(unique = true, nullable = false)
+    private String kakoNickName;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "employee_role_mapping",
@@ -55,10 +59,14 @@ public class Employee {
 
 
     @Builder
-    public Employee(String firstName, String lastName, Department department) {
+    public Employee(Long employeeId, String firstName, String lastName, Department department,
+            String kakoNickName, Set<Role> roles) {
+        this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.department = department;
+        this.kakoNickName = kakoNickName;
+        this.roles = roles;
     }
 
     public EmpoyeeResponse toResponse() {
