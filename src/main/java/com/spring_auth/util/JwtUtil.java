@@ -29,7 +29,7 @@ public class JwtUtil {
                 .addClaims(
                         Map.of(
                                 "nickName", employee.getKakoNickName()
-                                , "roles", employee.getRoleNameList()
+                                , "roles", employee.getRoleNameSet()
                         )
                 )
                 .setIssuedAt(now)

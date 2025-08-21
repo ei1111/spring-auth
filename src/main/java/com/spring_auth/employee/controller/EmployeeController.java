@@ -20,13 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
 @Tag(name = "1. 회원" , description = "회원 관리 API")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @PostMapping("/employees")
+    @PostMapping("/admin/employees")
     @Operation(summary = "회원 저장")
     public ResponseEntity<EmpoyeeResponse> save(@RequestBody EmployeeRequest request) {
         return new ResponseEntity(employeeService.save(request), HttpStatus.CREATED);

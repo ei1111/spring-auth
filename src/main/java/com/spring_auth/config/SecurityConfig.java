@@ -20,7 +20,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     private final KakaoVerifyService kakaoVerifyService;
     private final EmployeeRepository employeeRepository;
+
+    //토큰 없이 접근 예외 처리
     private final CustomAuthenticationEntryPoint authenticationEntryPoint;
+
+    //권한 예외 처리
+    private final CustomAccessDeniedHandler accessDeniedHandler;
 
     private static final String[] AUTH_ALLOWLIST = {
             "/swagger-ui/**", "/v3/**", "/login/**", "/images/**", "/kakao/**"
@@ -43,14 +48,18 @@ public class SecurityConfig {
         http.addFilterBefore(new JwtAuthFilter(kakaoVerifyService, employeeRepository), UsernamePasswordAuthenticationFilter.class);
         //이거 넣으면 모든 url에 토큰 검사함
         http.authorizeHttpRequests(a -> a
-                                      .requestMatchers(AUTH_ALLOWLIST)
-                                      .permitAll()
-                                      .anyRequest()
-                                      .authenticated()
+                                      .requestMatchers(AUTH_ALLOWLIST).permitAll()
+                                      .requestMatchers("/admin/**").hasRole("ADMIN")
+                                      .requestMatchers("/employees/**").hasRole("USER")
+                                      .requestMatchers("/departments/**").hasRole("USER")
+                                      .anyRequest().authenticated()
                                     );
 
-        //에러시 처리
-        http.exceptionHandling(e -> e.authenticationEntryPoint(authenticationEntryPoint));
+        //토큰 없이 접근 예외 처리, 권한 에러시 처리
+        http.exceptionHandling(e ->
+                 e.authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler)
+        );
         return http.build();
     }
 }

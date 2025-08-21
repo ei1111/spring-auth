@@ -28,11 +28,11 @@ public class EmpoyeeResponse {
 
     private Long departmentId;
 
-    private Set<Role> roles;
+    private Set<String> roles;
 
     @Builder
     public EmpoyeeResponse(Long employeeId, String firstName, String lastName, Long departmentId,
-            Set<Role> roles) {
+            Set<String> roles) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;

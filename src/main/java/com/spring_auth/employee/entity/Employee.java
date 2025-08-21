@@ -2,7 +2,8 @@ package com.spring_auth.employee.entity;
 
 import com.spring_auth.department.entity.Department;
 import com.spring_auth.employee.reqeust.EmpoyeeResponse;
-import com.spring_auth.role.entity.Role;
+import com.spring_auth.employeeRole.entity.EmployeeRole;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,12 +11,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,24 +51,31 @@ public class Employee {
     @Column(unique = true, nullable = false)
     private String kakoNickName;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+/*    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "employee_role_mapping",
             joinColumns = @JoinColumn(name = "employeeId"),
             inverseJoinColumns = @JoinColumn(name = "roleId")
     )
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();*/
 
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+    private Set<EmployeeRole> employeeRoles = new HashSet<>();
+
+
+    public void addEmployeeRole(EmployeeRole employeeRole) {
+        this.employeeRoles.add(employeeRole);
+    }
 
     @Builder
     public Employee(Long employeeId, String firstName, String lastName, Department department,
-            String kakoNickName, Set<Role> roles) {
+            String kakoNickName, Set<EmployeeRole> employeeRoles) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.department = department;
         this.kakoNickName = kakoNickName;
-        this.roles = roles;
+        this.employeeRoles = employeeRoles != null ? employeeRoles : new HashSet<>();
     }
 
     public EmpoyeeResponse toResponse() {
@@ -77,13 +84,17 @@ public class Employee {
                 .firstName(this.firstName)
                 .lastName(this.lastName)
                 .departmentId(department.getDepartmentId())
-                .roles(this.roles)
+                .roles(getRoleNameSet())
                 .build();
     }
 
-    public List<String> getRoleNameList() {
-        return roles.stream()
-                .map(Role::getName)
-                .toList();
+    public Set<String> getRoleNameSet() {
+        return employeeRoles.stream()
+                .map(er -> er.getRole().getRoleName())
+                .collect(Collectors.toSet());
+    }
+
+    public boolean isHR() {
+        return getRoleNameSet().contains("대리");
     }
 }

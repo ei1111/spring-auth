@@ -62,8 +62,8 @@ class JwtUtilTest {
         //given
         //when
         String token = JwtUtil.createToken(employee);
-        List<String> roles = employee.getRoleNameList();
-        List<String> claimsRoles = (List<String>) JwtUtil.parseToken(token).get("roles");
+        Set<String> roles = employee.getRoleNameList();
+        List<String> claimsRoles =  JwtUtil.parseToken(token).get("roles");
 
         //then
         assertEquals(roles, claimsRoles);

@@ -1,5 +1,6 @@
 package com.spring_auth.role.entity;
 
+import com.spring_auth.role.reqeust.RoleResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,14 +21,20 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
 
-    @Comment("인사팀")
+    @Comment("부서")
     @Column(length = 45)
-    private String name;
+    private String roleName;
 
 
     @Builder
-    public Role(Long roleId, String name) {
-        this.roleId = roleId;
-        this.name = name;
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public RoleResponse toResponse() {
+        return RoleResponse.builder()
+                .roleId(this.roleId)
+                .roleName(this.roleName)
+                .build();
     }
 }

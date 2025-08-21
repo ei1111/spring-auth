@@ -26,6 +26,11 @@ public class DepartmentService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 부서 입니다."));
     }
 
+    public Department findByDeptName(String deptName) {
+        return departmentRepository.findByDeptName(deptName)
+                .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 부서 입니다."));
+    }
+
     public List<DepartmentResponse> findAll() {
         return departmentRepository.findAll().stream()
                 .map(Department::toResponse)

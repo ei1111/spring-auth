@@ -18,19 +18,22 @@ public class EmployeeRequest {
     @Schema(name = "lastName", description = "이름", example = "길동")
     private String lastName;
 
-    @Schema(name = "departmentId", description = "부서 id", example = "1")
-    private Long departmentId;
+    @Schema(name = "deptName", description = "부서명", example = "인사팀")
+    private String deptName;
+
+    @Schema(name = "roleName", description = "직책명", example = "사원")
+    private String roleName;
 
     @Schema(name = "kakaoNickName", description = "카카오 닉네임", example = "홍길동")
     private String kakaoNickName;
 
-
     @Builder
-    public EmployeeRequest(String firstName, String lastName, Long departmentId,
+    public EmployeeRequest(String firstName, String lastName, String deptName, String roleName,
             String kakaoNickName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.departmentId = departmentId;
+        this.deptName = deptName;
+        this.roleName = roleName;
         this.kakaoNickName = kakaoNickName;
     }
 
