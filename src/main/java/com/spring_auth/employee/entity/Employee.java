@@ -13,6 +13,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import lombok.Builder;
 import lombok.Getter;
@@ -55,7 +57,7 @@ public class Employee {
             joinColumns = @JoinColumn(name = "employeeId"),
             inverseJoinColumns = @JoinColumn(name = "roleId")
     )
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
 
     @Builder
@@ -77,5 +79,11 @@ public class Employee {
                 .departmentId(department.getDepartmentId())
                 .roles(this.roles)
                 .build();
+    }
+
+    public List<String> getRoleNameList() {
+        return roles.stream()
+                .map(Role::getName)
+                .toList();
     }
 }

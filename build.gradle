@@ -60,9 +60,16 @@ dependencies {
     /*P6Spy*/
     implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 
+    /*Jwt*/
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.12.6'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+
     /*test*/
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    //testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+
 
     /* 테스트에서 Lombok 사용을 위한 의존성 추가 */
     testCompileOnly 'org.projectlombok:lombok'
