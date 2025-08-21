@@ -1,10 +1,7 @@
 package com.spring_auth.kakao.controller.api;
 
-import com.spring_auth.employee.repository.EmployeeRepository;
 import com.spring_auth.kakao.request.KakakoApiRequest;
-import com.spring_auth.kakao.request.KakaoUserInfoResponse;
 import com.spring_auth.kakao.service.KakaoLoginService;
-import com.spring_auth.kakao.service.KakaoVerifyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +18,6 @@ public class KakaoLoginController {
 
     @GetMapping("/callback")
     public ResponseEntity callback(KakakoApiRequest request){
-        kakaoLoginService.login(request.getCode());
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(kakaoLoginService.login(request.getCode()));
     }
 }

@@ -17,9 +17,12 @@ public class KakaoLoginService {
     private final KakaoVerifyService kakaoVerifyService;
     private final EmployeeRepository employeeRepository;
 
-    public void login(String code) {
-        String accessTokenFromKakao = kakaoVerifyService.getAccessTokenFromKakao(code);
-        KakaoUserInfoResponse dto = kakaoVerifyService.getKakaoUserInfo(accessTokenFromKakao);
+    public String login(String code) {
+         return kakaoVerifyService.getAccessTokenFromKakao(code);
+    }
+
+    public void getKakaoUser(String token) {
+        KakaoUserInfoResponse dto = kakaoVerifyService.getKakaoUserInfo(token);
 
         String nickname = Optional.ofNullable(dto.getKakaoAccount())
                 .map(KakaoAccount::getProfile)
