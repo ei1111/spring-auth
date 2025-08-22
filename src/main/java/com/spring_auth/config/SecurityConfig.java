@@ -39,13 +39,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        /*여기가 일반적인 restApi 설정, 추후 필*/
+        /*여기가 일반적인 restApi 설정, 추후 필요 로직 알아서 추가*/
         http.csrf(s -> s.disable())
                 .cors(s -> s.disable())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .formLogin(f -> f.disable());
 
-        http.addFilterBefore(new JwtAuthFilter(kakaoVerifyService, employeeRepository), UsernamePasswordAuthenticationFilter.class);
         //이거 넣으면 모든 url에 토큰 검사함
         http.authorizeHttpRequests(a -> a
                                       .requestMatchers(AUTH_ALLOWLIST).permitAll()
@@ -55,6 +54,8 @@ public class SecurityConfig {
                                       .anyRequest().authenticated()
                                     );
 
+        //토큰 검사 및 권한 부여
+        http.addFilterBefore(new JwtAuthFilter(kakaoVerifyService, employeeRepository), UsernamePasswordAuthenticationFilter.class);
         //토큰 없이 접근 예외 처리, 권한 에러시 처리
         http.exceptionHandling(e ->
                  e.authenticationEntryPoint(authenticationEntryPoint)

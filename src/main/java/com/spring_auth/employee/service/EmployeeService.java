@@ -31,10 +31,7 @@ public class EmployeeService {
         Role role = roleService.findByRoleName(request.getRoleName());
         Employee employee = request.toEmployeeEntity(department);
 
-        EmployeeRole employeeRole = EmployeeRole.builder()
-                .employee(employee)
-                .role(role)
-                .build();
+        EmployeeRole employeeRole = EmployeeRole.of(employee, role);
 
         employee.addEmployeeRole(employeeRole);
         Employee employeeResult = employeeRepository.save(employee);

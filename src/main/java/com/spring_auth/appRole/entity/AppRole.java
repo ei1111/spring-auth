@@ -1,7 +1,8 @@
-package com.spring_auth.employeeRole.entity;
+package com.spring_auth.appRole.entity;
 
+import com.spring_auth.app.entity.App;
+import com.spring_auth.appRole.request.AppRoleResponse;
 import com.spring_auth.employee.entity.Employee;
-import com.spring_auth.role.entity.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -15,26 +16,25 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-@Entity(name = "employee_Role")
-public class EmployeeRole {
+@Entity(name = "app_role")
+public class AppRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long employeeRoleId;
+    private Long appRoleId;
 
     @JoinColumn(name = "employeeId")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Employee employee;
+    private Employee  employee;
 
-    @JoinColumn(name = "roleId")
+    @JoinColumn(name = "appId")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Role role;
+    private App app;
 
-    public static EmployeeRole of(final Employee employee, final Role role) {
-        return new EmployeeRole(employee, role);
-    }
 
-    private EmployeeRole(Employee employee, Role role) {
-        this.employee = employee;
-        this.role = role;
+    public AppRoleResponse toResponse() {
+        return AppRoleResponse.builder()
+                .appRoleId(appRoleId)
+                .appResponse(app.toResponse())
+                .build();
     }
 }

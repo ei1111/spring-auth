@@ -1,5 +1,6 @@
 package com.spring_auth.employee.entity;
 
+import com.spring_auth.appRole.entity.AppRole;
 import com.spring_auth.department.entity.Department;
 import com.spring_auth.employee.reqeust.EmpoyeeResponse;
 import com.spring_auth.employeeRole.entity.EmployeeRole;
@@ -13,7 +14,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.Builder;
@@ -24,9 +27,6 @@ import org.hibernate.annotations.Comment;
 @Getter
 @NoArgsConstructor
 @Entity(name = "employee")
-//인사팀이면 유저 등록 기능이 있다
-//조직장이면 휴가를 승인할수 있다
-//인사팀 조직장이면 둘의 권한을 가질수 있다
 public class Employee {
 
     @Id
@@ -51,17 +51,11 @@ public class Employee {
     @Column(unique = true, nullable = false)
     private String kakoNickName;
 
-/*    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "employee_role_mapping",
-            joinColumns = @JoinColumn(name = "employeeId"),
-            inverseJoinColumns = @JoinColumn(name = "roleId")
-    )
-    private Set<Role> roles = new HashSet<>();*/
-
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     private Set<EmployeeRole> employeeRoles = new HashSet<>();
 
+    @OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
+    private List<AppRole> appRoles = new ArrayList<>();
 
     public void addEmployeeRole(EmployeeRole employeeRole) {
         this.employeeRoles.add(employeeRole);
@@ -69,13 +63,14 @@ public class Employee {
 
     @Builder
     public Employee(Long employeeId, String firstName, String lastName, Department department,
-            String kakoNickName, Set<EmployeeRole> employeeRoles) {
+            String kakoNickName, Set<EmployeeRole> employeeRoles,  List<AppRole> appRoles) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.department = department;
         this.kakoNickName = kakoNickName;
         this.employeeRoles = employeeRoles != null ? employeeRoles : new HashSet<>();
+        this.appRoles = appRoles != null ? appRoles : new ArrayList<>();
     }
 
     public EmpoyeeResponse toResponse() {
@@ -85,6 +80,7 @@ public class Employee {
                 .lastName(this.lastName)
                 .departmentId(department.getDepartmentId())
                 .roles(getRoleNameSet())
+                .appRoles(appRoles.stream().map(AppRole::toResponse).toList())
                 .build();
     }
 

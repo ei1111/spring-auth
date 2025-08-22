@@ -1,5 +1,7 @@
 package com.spring_auth.employee.reqeust;
 
+import com.spring_auth.appRole.entity.AppRole;
+import com.spring_auth.appRole.request.AppRoleResponse;
 import com.spring_auth.department.entity.Department;
 import com.spring_auth.role.entity.Role;
 import jakarta.persistence.Column;
@@ -30,13 +32,16 @@ public class EmpoyeeResponse {
 
     private Set<String> roles;
 
+    private List<AppRoleResponse> appRoles;
+
     @Builder
     public EmpoyeeResponse(Long employeeId, String firstName, String lastName, Long departmentId,
-            Set<String> roles) {
+            Set<String> roles,List<AppRoleResponse> appRoles ) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.departmentId = departmentId;
         this.roles = roles;
+        this.appRoles = appRoles;
     }
 }
