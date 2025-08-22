@@ -1,6 +1,6 @@
 package com.spring_auth.kakao.controller.api;
 
-import com.spring_auth.kakao.request.KakakoApiRequest;
+import com.spring_auth.kakao.dto.KakakoApiRequest;
 import com.spring_auth.kakao.service.KakaoLoginService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

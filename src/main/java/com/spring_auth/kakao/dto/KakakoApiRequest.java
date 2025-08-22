@@ -1,4 +1,4 @@
-package com.spring_auth.kakao.request;
+package com.spring_auth.kakao.dto;
 
 import lombok.Getter;
 import lombok.Setter;

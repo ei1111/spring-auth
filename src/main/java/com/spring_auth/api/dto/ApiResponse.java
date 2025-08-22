@@ -1,6 +1,5 @@
-package com.spring_auth.api.request;
+package com.spring_auth.api.dto;
 
-import com.spring_auth.app.entity.App;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

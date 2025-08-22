@@ -1,4 +1,4 @@
-package com.spring_auth.department.reqeust;
+package com.spring_auth.department.dto;
 
 import com.spring_auth.department.entity.Department;
 import io.swagger.v3.oas.annotations.media.Schema;

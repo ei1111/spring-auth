@@ -1,4 +1,4 @@
-package com.spring_auth.role.reqeust;
+package com.spring_auth.role.dto;
 
 import com.spring_auth.role.entity.Role;
 import io.swagger.v3.oas.annotations.media.Schema;

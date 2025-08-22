@@ -1,12 +1,10 @@
 package com.spring_auth.role.controller;
 
-import com.spring_auth.role.repository.RoleRepository;
-import com.spring_auth.role.reqeust.RoleRequest;
-import com.spring_auth.role.reqeust.RoleResponse;
+import com.spring_auth.role.dto.RoleRequest;
+import com.spring_auth.role.dto.RoleResponse;
 import com.spring_auth.role.service.RoleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import java.net.http.HttpResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

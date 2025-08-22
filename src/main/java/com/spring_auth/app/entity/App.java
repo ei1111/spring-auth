@@ -1,7 +1,7 @@
 package com.spring_auth.app.entity;
 
 import com.spring_auth.api.entity.Api;
-import com.spring_auth.app.request.AppResponse;
+import com.spring_auth.app.dto.AppResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

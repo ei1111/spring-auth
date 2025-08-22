@@ -2,8 +2,8 @@ package com.spring_auth.app.service;
 
 import com.spring_auth.app.entity.App;
 import com.spring_auth.app.repository.AppRepository;
-import com.spring_auth.app.request.AppRequest;
-import com.spring_auth.app.request.AppResponse;
+import com.spring_auth.app.dto.AppRequest;
+import com.spring_auth.app.dto.AppResponse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

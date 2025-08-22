@@ -1,4 +1,4 @@
-package com.spring_auth.app.request;
+package com.spring_auth.app.dto;
 
 import com.spring_auth.app.entity.App;
 import io.swagger.v3.oas.annotations.media.Schema;

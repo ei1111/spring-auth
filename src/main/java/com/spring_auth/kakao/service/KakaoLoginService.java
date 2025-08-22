@@ -1,9 +1,9 @@
 package com.spring_auth.kakao.service;
 
 import com.spring_auth.employee.repository.EmployeeRepository;
-import com.spring_auth.kakao.request.KakaoAccount;
-import com.spring_auth.kakao.request.KakaoAccount.Profile;
-import com.spring_auth.kakao.request.KakaoUserInfoResponse;
+import com.spring_auth.kakao.dto.KakaoAccount;
+import com.spring_auth.kakao.dto.KakaoAccount.Profile;
+import com.spring_auth.kakao.dto.KakaoUserInfoResponse;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.spring_auth.kakao.request;
+package com.spring_auth.kakao.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

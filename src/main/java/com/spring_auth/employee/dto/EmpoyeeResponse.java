@@ -1,16 +1,6 @@
-package com.spring_auth.employee.reqeust;
+package com.spring_auth.employee.dto;
 
-import com.spring_auth.appRole.entity.AppRole;
-import com.spring_auth.appRole.request.AppRoleResponse;
-import com.spring_auth.department.entity.Department;
-import com.spring_auth.role.entity.Role;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import java.util.ArrayList;
+import com.spring_auth.appRole.dto.AppRoleResponse;
 import java.util.List;
 import java.util.Set;
 import lombok.Builder;

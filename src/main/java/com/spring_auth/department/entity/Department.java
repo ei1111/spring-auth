@@ -1,6 +1,6 @@
 package com.spring_auth.department.entity;
 
-import com.spring_auth.department.reqeust.DepartmentResponse;
+import com.spring_auth.department.dto.DepartmentResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

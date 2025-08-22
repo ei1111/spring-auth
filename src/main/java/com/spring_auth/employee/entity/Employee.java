@@ -2,7 +2,7 @@ package com.spring_auth.employee.entity;
 
 import com.spring_auth.appRole.entity.AppRole;
 import com.spring_auth.department.entity.Department;
-import com.spring_auth.employee.reqeust.EmpoyeeResponse;
+import com.spring_auth.employee.dto.EmpoyeeResponse;
 import com.spring_auth.employeeRole.entity.EmployeeRole;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

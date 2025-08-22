@@ -11,5 +11,9 @@ services:
       - "--collation-server=utf8mb4_bin"
     ports:
       - 3306:3306
+  my-cache-server:
+    image: redis
+    ports:
+      - 6379:6379
 volumes:
   mysql_data:

@@ -1,4 +1,4 @@
-package com.spring_auth.department.reqeust;
+package com.spring_auth.department.dto;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.spring_auth.employee.reqeust;
+package com.spring_auth.employee.dto;
 
 import com.spring_auth.department.entity.Department;
 import com.spring_auth.employee.entity.Employee;

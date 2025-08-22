@@ -2,8 +2,8 @@ package com.spring_auth.role.service;
 
 import com.spring_auth.role.entity.Role;
 import com.spring_auth.role.repository.RoleRepository;
-import com.spring_auth.role.reqeust.RoleRequest;
-import com.spring_auth.role.reqeust.RoleResponse;
+import com.spring_auth.role.dto.RoleRequest;
+import com.spring_auth.role.dto.RoleResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

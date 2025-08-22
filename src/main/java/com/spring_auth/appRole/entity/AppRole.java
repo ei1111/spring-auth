@@ -1,7 +1,7 @@
 package com.spring_auth.appRole.entity;
 
 import com.spring_auth.app.entity.App;
-import com.spring_auth.appRole.request.AppRoleResponse;
+import com.spring_auth.appRole.dto.AppRoleResponse;
 import com.spring_auth.employee.entity.Employee;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

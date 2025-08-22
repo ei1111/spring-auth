@@ -2,8 +2,8 @@ package com.spring_auth.department.service;
 
 import com.spring_auth.department.entity.Department;
 import com.spring_auth.department.repository.DepartmentRepository;
-import com.spring_auth.department.reqeust.DepartmentRequest;
-import com.spring_auth.department.reqeust.DepartmentResponse;
+import com.spring_auth.department.dto.DepartmentRequest;
+import com.spring_auth.department.dto.DepartmentResponse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

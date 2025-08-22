@@ -1,12 +1,11 @@
 package com.spring_auth.kakao.service;
 
-import com.spring_auth.kakao.request.KakaoApiResponse;
-import com.spring_auth.kakao.request.KakaoUserInfoResponse;
+import com.spring_auth.kakao.dto.KakaoApiResponse;
+import com.spring_auth.kakao.dto.KakaoUserInfoResponse;
 import io.netty.handler.codec.http.HttpHeaderValues;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
